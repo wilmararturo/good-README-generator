@@ -36,7 +36,11 @@ _To-do_
 
 ## Questions
 
-Create an issue in this repository.
+Contact:
+
+[wilmararturo](https://github.com/wilmararturo) on GitHub
+
+[e-mail](mailto:wilmars@gmail.com)
 
 ## Contributing
 
