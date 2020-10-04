@@ -1,14 +1,22 @@
 {
-  "name": "static-site",
+  "name": "good-readme-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "A node command line util for creating a good README",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Wilmar Stephens",
   "license": "ISC",
   "dependencies": {
     "inquirer": "^6.3.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilmararturo/good-README-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wilmararturo/good-README-generator/issues"
+  },
+  "homepage": "https://github.com/wilmararturo/good-README-generator#readme"
 }
