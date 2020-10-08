@@ -37,6 +37,26 @@ const questions = [
         message: "Project desscription:"
     },
     {
+        type: "input",
+        name: "installInstructions",
+        message: "Install instructions:"
+    },
+    {
+        type: "input",
+        name: "usageInformation",
+        message: "Usage information:"
+    },
+    {
+        type: "input",
+        name: "contributionGuidlines",
+        message: "Contribution guidlines:"
+    },
+    {
+        type: "input",
+        name: "testInformations",
+        message: "Tests:"
+    },
+    {
         type: "list",
         name: "projectLicenseChoice",
         message: "Project License",
@@ -48,22 +68,6 @@ const questions = [
 
 // function to write README file
 function writeToFile(fileName, data) {
-}
-
-function getAnswers() {
-
-    const results = inquirer.prompt(questions)
-        .then((answers) => {
-            console.log(answers);
-            return answers;
-        });
-    console.log(results);
-
-    return results;
-
-
-
-
 }
 
 
@@ -78,17 +82,6 @@ async function checkLicenseName(licenseName) {
 
 }
 
-async function getLicenseList() {
-    try {
-        const licenseList = await licenseUtil.getLicenseList();
-        return licenseList;
-    }
-    catch (err) {
-        throw err;
-
-    }
-
-}
 
 async function getLicenseData(licenseName) {
     const licenseTest = await licenseUtil.checkLicense(licenseName);
