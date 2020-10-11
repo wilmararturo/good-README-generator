@@ -2,23 +2,40 @@ const axios = require("axios");
 
 function GithubLicense() { }
 
-GithubLicense.prototype.checkLicense = async function (licenseName) {
+GithubLicense.prototype.checkLicense = async (licenseName) => {
 
-    const licenseData = await GithubLicense.prototype.getGitHubAPI(`/licenses/${licenseName}`);
+    const url = `https://api.github.com/licenses/${licenseName}`;
+    const config = { headers: { accept: "application/vnd.github.v3+json" } };
 
 
-    if (licenseData.data["name"]) {
-        return true;
-    } else {
-        return false;
-    }
+    const licenseStatus = await axios.get(url, config)
+        .then(function (res) {
+            if (res.data["name"]) {
+                return true;
+            } else {
+                return false;
+            }
+        })
+        .catch(function (err) {
+            throw err;
+        });
+    return licenseStatus
+
+
+
 
 }
 
+
 GithubLicense.prototype.getLicenseList = async function () {
+
+    const url = `https://api.github.com/licenses`;
+    const config = { headers: { accept: "application/vnd.github.v3+json" } };
+    let responseList = {};
+
     try {
-        const { 'data': licenses } = await GithubLicense.prototype.getGitHubAPI(`/licenses`);
-        const licenseList = licenses.map(license => {
+        const { data: licenses } = await axios.get(url, config);
+        responseList = await licenses.map(license => {
             //{name:"display",value:"return",short:"feedback"}
             const listObj = {};
             listObj["name"] = license.name;
@@ -26,44 +43,55 @@ GithubLicense.prototype.getLicenseList = async function () {
             listObj["short"] = license.spdx_id;
 
             return listObj;
-        }
-
-        )
-
-        return licenseList;
+        });
 
     }
-    catch (err) { throw err }
+    catch (e) { throw e; }
 
-
+    return await Promise.resolve(responseList);
 }
 
-GithubLicense.prototype.getLicense = async function (licenseName) {
-    const licenseData = await GithubLicense.prototype.getGitHubAPI(`/licenses/${licenseName}`);
 
-    return licenseData;
+
+GithubLicense.prototype.getLicense = async function (licenseName) {
+
+    // const licenseData = await GithubLicense.prototype.getGitHubAPI(`/licenses/${licenseName}`);
+    // return licenseData;
+
+    const url = `https://api.github.com/licenses/${licenseName}`;
+    const config = { headers: { accept: "application/vnd.github.v3+json" } };
+    let licenseData = {};
+
+    try {
+        const { data: license } = await axios.get(url, config);
+        licenseData = license;
+
+    }
+    catch (e) { throw e; }
+
+    return await Promise.resolve(licenseData);
+
 }
 
 GithubLicense.prototype.getGitHubAPI = async function (endpoint) {
-    try {
-        const url = `https://api.github.com${endpoint}`;
-        const config = { headers: { accept: "application/vnd.github.v3+json" } };
 
-        const licenseData = await axios
-            .get(url, config);
-        return licenseData;
-    }
-    catch (err) {
 
-        throw err;
-
-    }
 
 }
 
+
+
 // const ghLicense = new GithubLicense();
 
-// ghLicense.getLicenseList();
+// const licenseInfo = ghLicense.getLicense("apache-2.0");
+// licenseInfo.then(console.log);
+
+
+// const commonLicenseList = ghLicense.getLicenseList();
+// commonLicenseList.then(console.log);
+
+
+
 const featuredLicenseList =
     [
         {

@@ -1,8 +1,12 @@
 const inquirer = require("inquirer");
+const fs = require("fs").promises;
 const licenseUtils = require("./license-utils");
+const buildReadme = require("./build-readme");
 
 const licenseUtil = new licenseUtils.GithubLicense();
 const licenseChoices = licenseUtils.featuredLicenseList;
+
+const renderReadme = new buildReadme.RenderReadme();
 
 // array of questions for user
 const questions = [
@@ -53,7 +57,7 @@ const questions = [
     },
     {
         type: "input",
-        name: "testInformations",
+        name: "testInformation",
         message: "Tests:"
     },
     {
@@ -67,7 +71,12 @@ const questions = [
 
 
 // function to write README file
-function writeToFile(fileName, data) {
+async function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, "utf8", function (err) {
+        if (err) {
+            throw err;
+        }
+    })
 }
 
 
@@ -84,19 +93,36 @@ async function checkLicenseName(licenseName) {
 
 
 async function getLicenseData(licenseName) {
-    const licenseTest = await licenseUtil.checkLicense(licenseName);
-    console.log(licenseTest);
-    return licenseTest;
+    // const licenseTest = await licenseUtil.checkLicense(licenseName);
+    // console.log(licenseTest);
+    // return licenseTest;
 
 }
 
 // function to initialize program
 async function init() {
-    await inquirer.prompt(questions)
-        .then((answers) => {
-            console.log(answers);
-            return answers;
-        });
+    try {
+        //ask questions
+        const responses = await inquirer.prompt(questions);
+        await console.log(responses);
+        await console.log(responses.projectLicenseChoice)
+        //get license data
+        const licenseData = await licenseUtil.getLicense(responses.projectLicenseChoice);
+        await console.log(licenseData);
+
+        const readmeContent = await renderReadme.outputReadme(responses, licenseData)
+
+        await console.log(readmeContent);
+
+        await writeToFile("new.README.md", readmeContent);
+
+
+    }
+    //render markdown
+    //write file
+    catch (err) {
+        throw err
+    }
 
 }
 
