@@ -48,8 +48,6 @@ ${responseObj.testInformation}\n\
 \n\
 Contact:\n\
 \n\
----\n\
-\n\
 [${responseObj.githubUsername}](https://github.com/${responseObj.githubUsername}) on GitHub\n\
 \n\
 [e-mail](mailto:${responseObj.eMail})\n\
