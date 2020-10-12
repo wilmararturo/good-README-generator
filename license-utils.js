@@ -55,9 +55,6 @@ GithubLicense.prototype.getLicenseList = async function () {
 
 GithubLicense.prototype.getLicense = async function (licenseName) {
 
-    // const licenseData = await GithubLicense.prototype.getGitHubAPI(`/licenses/${licenseName}`);
-    // return licenseData;
-
     const url = `https://api.github.com/licenses/${licenseName}`;
     const config = { headers: { accept: "application/vnd.github.v3+json" } };
     let licenseData = {};
@@ -73,22 +70,12 @@ GithubLicense.prototype.getLicense = async function (licenseName) {
 
 }
 
-GithubLicense.prototype.getGitHubAPI = async function (endpoint) {
+// GithubLicense.prototype.getGitHubAPI = async function (endpoint) {
 
 
 
-}
+// }
 
-
-
-// const ghLicense = new GithubLicense();
-
-// const licenseInfo = ghLicense.getLicense("apache-2.0");
-// licenseInfo.then(console.log);
-
-
-// const commonLicenseList = ghLicense.getLicenseList();
-// commonLicenseList.then(console.log);
 
 
 
