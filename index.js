@@ -80,46 +80,24 @@ async function writeToFile(fileName, data) {
 }
 
 
-async function checkLicenseName(licenseName) {
-    try {
-        const licenseTest = await licenseUtil.checkLicense(licenseName);
-        return licenseTest;
-    }
-    catch (err) {
-        throw err;
-    }
-
-}
-
-
-async function getLicenseData(licenseName) {
-    // const licenseTest = await licenseUtil.checkLicense(licenseName);
-    // console.log(licenseTest);
-    // return licenseTest;
-
-}
-
 // function to initialize program
 async function init() {
     try {
         //ask questions
         const responses = await inquirer.prompt(questions);
-        await console.log(responses);
-        await console.log(responses.projectLicenseChoice)
+
         //get license data
         const licenseData = await licenseUtil.getLicense(responses.projectLicenseChoice);
-        await console.log(licenseData);
 
+        //render markdown
         const readmeContent = await renderReadme.outputReadme(responses, licenseData)
 
-        await console.log(readmeContent);
 
+        //write file
         await writeToFile("new.README.md", readmeContent);
 
 
     }
-    //render markdown
-    //write file
     catch (err) {
         throw err
     }
