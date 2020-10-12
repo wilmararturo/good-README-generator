@@ -1,5 +1,7 @@
 # good README generator
 
+![](https://img.shields.io/badge/license-MIT%20License-green)
+
 ## Description
 A node command line util for creating a good README.  This utility will create a professional README.md for a project with Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions.
 
@@ -48,4 +50,6 @@ Create a pull request.
 
 ## License
 
-Magic...
+---
+
+Licensed under the [MIT License](https://api.github.com/licenses/mit)
