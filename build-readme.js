@@ -71,15 +71,15 @@ Licensed under the [${licenseObj.name}](${licenseObj.url})\n\
 }
 
 const sampleResponeObj = {
-    userName: 'Wilmar Stephens',
-    eMail: 'wilmars@gmail.com',
-    githubUsername: 'wilmararturo',
-    projectTitle: 'that-thing',
-    projectDescription: 'That thing (doo wop)',
-    installInstructions: 'Play that thing',
-    usageInformation: 'Turn up the volume and listen',
+    userName: 'Tyler Durden',
+    eMail: 'nobody@gmail.com',
+    githubUsername: 'nobody',
+    projectTitle: 'Special Project Gamma',
+    projectDescription: 'Project Gamma has a name and its name is Project Gamma',
+    installInstructions: 'Install Gamma',
+    usageInformation: 'Run Gamma',
     contributionGuidlines: 'Contact the maintainer',
-    testInformation: 'none',
+    testInformation: 'n/a',
     projectLicenseChoice: 'mit'
 }
 
