@@ -31,6 +31,9 @@ Run the program and answer the questions
 ```
 node index.js
 ```
+After the questions are answered, an new file name `new.README.md` will be created.  Review the files, edit, and copy to your project.
+
+A sample output is available [sampleREADME.md](./sampleREADME.md);
 
 ## Tests
 
