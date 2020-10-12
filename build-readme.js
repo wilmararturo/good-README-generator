@@ -64,7 +64,6 @@ ${responseObj.contributionGuidlines}\n\
 \n\
 Licensed under the [${licenseObj.name}](${licenseObj.url})\n\
     `
-    console.log(readmeTemplate);
     return readmeTemplate.trim();
 }
 
